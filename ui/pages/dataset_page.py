@@ -1,4 +1,3 @@
-import pandas as pd
 from tkinter import ttk
 from config.settings import CSV_PATH, WINDOW_WIDTH
 from core.delete_dataset import delete_dataset
@@ -7,6 +6,8 @@ from ui.widgets.create_title import create_title
 from ui.widgets.create_button import create_button
 from ui.widgets.display_dataframe.display_dataframe import display_dataframe
 from ui.utils.change_page import change_page
+from data_collection import get_upcoming, get_source
+from core import train_model, fill_column
 
 
 def change_to_start_page(root):
@@ -26,7 +27,7 @@ def dataset_page(root):
     create_button(root, lambda: change_to_start_page(root), 'Вернуться на главную', row=1, column=2, pady=10)
 
     max_rows = 100
-    dataframe = pd.read_csv(CSV_PATH).copy().sort_values('roi', ascending=False)
+    dataframe = fill_column(get_upcoming(), train_model(get_source()))
 
     display_dataframe(root, dataframe, WINDOW_WIDTH, max_rows=max_rows, pady=(10, 0),
                       sticky='nsew', row=2, column=1,

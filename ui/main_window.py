@@ -1,4 +1,3 @@
-# TODO Прописать создание окна приложения плюс выгрузка виджетов в данное окно
 import tkinter as tk
 from config.settings import WINDOW_WIDTH, WINDOW_HEIGHT
 from ui.pages.start_page import start_page

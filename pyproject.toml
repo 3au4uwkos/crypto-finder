@@ -11,4 +11,5 @@ dependencies = [
     "playwright==1.52.0",
     "beautifulsoup4>=4.13.4",
     "scikit-learn>=1.7.0",
+    "future==1.0.0",
 ]

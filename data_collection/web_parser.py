@@ -135,7 +135,7 @@ def get_source() -> pd.DataFrame:
     """Делает запросы к указанным страницам и объединяет результаты"""
 
     base_url = 'https://cryptorank.io/ico'
-    pages = list(range(1, 2))
+    pages = list(range(1, 44))
     all_data = []
 
     for page in pages:
