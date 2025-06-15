@@ -1,11 +1,10 @@
 from data_collection import get_upcoming, get_source
+from core import train_model, fill_column
 
 
 def main():
 
-    # print(get_upcoming().head())
-
-    print(get_source().head())
+    print(fill_column(get_upcoming(), train_model(get_source())).head())
 
 
 if __name__ == "__main__":

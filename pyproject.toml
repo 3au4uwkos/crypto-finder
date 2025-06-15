@@ -10,4 +10,5 @@ dependencies = [
     "requests>=2.32.4",
     "playwright==1.52.0",
     "beautifulsoup4>=4.13.4",
+    "scikit-learn>=1.7.0",
 ]
