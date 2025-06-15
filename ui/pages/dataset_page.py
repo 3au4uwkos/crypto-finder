@@ -1,6 +1,7 @@
 import pandas as pd
 from tkinter import ttk
 from config.settings import CSV_PATH, WINDOW_WIDTH
+from core.delete_dataset import delete_dataset
 from ui.utils.configure_grid import set_grid
 from ui.widgets.create_title import create_title
 from ui.widgets.create_button import create_button
@@ -10,6 +11,7 @@ from ui.utils.change_page import change_page
 
 def change_to_start_page(root):
     from ui.pages.start_page import start_page
+    delete_dataset()
     change_page(root, lambda: start_page(root))
 
 
