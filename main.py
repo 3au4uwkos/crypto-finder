@@ -1,22 +1,11 @@
-from framework import get_html
+from data_collection import get_upcoming, get_source
 
 
 def main():
-    url = "https://github.com"  # Ваш URL
 
-    print(f"🔄 Пробуем получить данные с {url}...")
-    response = get_html(url)
+    # print(get_upcoming().head())
 
-    if response:
-        print("\n✅ Данные получены!")
-        print("Статус:", response.status_code)
-        print("Размер HTML:", len(response.text), "символов")
-
-        with open("output.html", "w", encoding="utf-8") as f:
-            f.write(response.text)
-        print("Сохранено в 'output.html'")
-    else:
-        print("\n❌ Все попытки исчерпаны. Сайт недоступен.")
+    print(get_source().head())
 
 
 if __name__ == "__main__":
