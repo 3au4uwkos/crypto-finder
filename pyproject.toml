@@ -7,4 +7,8 @@ dependencies = [
     "matplotlib>=3.10.3",
     "pandas==2.3.0",
     "numpy==2.3.0",
+    "requests>=2.32.4",
+    "playwright==1.52.0",
+    "beautifulsoup4>=4.13.4",
+    "scikit-learn>=1.7.0",
 ]
