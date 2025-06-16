@@ -1,4 +1,3 @@
-# TODO добавить конфигурацию API ключей
 import os
 
 WINDOW_WIDTH = 1024

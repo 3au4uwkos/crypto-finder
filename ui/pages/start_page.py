@@ -6,15 +6,19 @@ from ui.utils.change_page import change_page
 
 def change_to_dataset_page(root):
     from ui.pages.dataset_page import dataset_page
-    change_page(root, lambda: dataset_page(root))
+    from data_collection import get_upcoming, get_source
+    from core import train_model, fill_column
+
+    dataframe = fill_column(get_upcoming(rows=1, pages=1), train_model(get_source(pages=5)))
+    change_page(root, lambda: dataset_page(root, dataframe))
 
 
 def start_page(root):
     set_grid(
         root,
-        rows=((1, 1), (2, 1)),
+        rows=((1, 1), (2, 1), (3, 1)),
         cols=((1, 1),),
-        help_rows=(0, 3),
+        help_rows=(0, 4),
         rows_weight=10,
     )
 

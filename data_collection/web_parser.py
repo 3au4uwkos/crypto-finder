@@ -24,18 +24,15 @@ def parse_html_to_dataframe(html: str, source: bool) -> pd.DataFrame:
                 fund = cells[6].get_text(strip=True)  # 7-я колонка
                 raise_text = cells[8].get_text(strip=True)[2:]  # 9-я колонка (индекс 8)
 
-
                 # Проверка на пропуск строки
                 if any(val in ['N/A', ''] for val in [roi_text, fund, raise_text]):
                     continue
-
 
                 # Обработка ROI (удаляем 'x' и преобразуем в int)
                 try:
                     roi = float(roi_text.rstrip('x'))
                 except ValueError:
                     continue  # Пропускаем строку, если не удалось преобразовать
-
 
                 # Обработка raise (K/M → тысячи/миллионы)
                 try:
@@ -92,7 +89,6 @@ def parse_html_to_dataframe(html: str, source: bool) -> pd.DataFrame:
                 # Обработка date (cells[5])
                 date_obj = cells[5].get_text(strip=True)
 
-
                 data.append([name, raise_value, fund, date_obj])
 
     columns = ['name', 'roi', 'fund', 'raise'] if source else ['name', 'raise', 'fund', 'date']
@@ -100,15 +96,14 @@ def parse_html_to_dataframe(html: str, source: bool) -> pd.DataFrame:
     return pd.DataFrame(data, columns=columns)
 
 
-def get_upcoming() -> pd.DataFrame:
+def get_upcoming(rows=100, pages=100) -> pd.DataFrame:
     """Делает запросы к указанным страницам и объединяет результаты"""
 
     base_url = 'https://cryptorank.io/upcoming-ico'
-    pages = [1,2]
     all_data = []
 
-    for page in pages:
-        url = f"{base_url}?rows=100&page={page}"
+    for page in range(1, pages + 1):
+        url = f"{base_url}?rows={rows}&page={page}"
         print(f"🔄 Загружаем страницу {page}...")
 
         html = get_html(url)
@@ -125,20 +120,21 @@ def get_upcoming() -> pd.DataFrame:
     # Объединение всех DataFrame
     if all_data:
         merged_df = pd.concat(all_data, ignore_index=True)
+        merged_df = merged_df.dropna()
         print(f"\nОбъединено {len(all_data)} страниц, всего записей: {len(merged_df)}")
         return merged_df
     else:
         print("⚠️ Нет данных для объединения")
         return pd.DataFrame()
 
-def get_source() -> pd.DataFrame:
+
+def get_source(pages=44) -> pd.DataFrame:
     """Делает запросы к указанным страницам и объединяет результаты"""
 
     base_url = 'https://cryptorank.io/ico'
-    pages = list(range(1, 44))
     all_data = []
 
-    for page in pages:
+    for page in range(1, pages + 1):
         url = f"{base_url}?rows=100&page={page}"
         print(f"🔄 Загружаем страницу {page}...")
 

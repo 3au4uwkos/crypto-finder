@@ -32,7 +32,6 @@ def fill_column(df: pd.DataFrame, model) -> pd.DataFrame:
     """
     # Создаем копию DataFrame чтобы не изменять оригинал
     result_df = df.copy()
-
     # Проверяем наличие необходимых колонок
     required_columns = ['fund', 'raise']
     if not all(col in df.columns for col in required_columns):

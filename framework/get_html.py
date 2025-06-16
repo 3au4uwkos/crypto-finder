@@ -3,7 +3,7 @@ from typing import Optional
 from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeoutError
 
 
-def get_html(url: str, max_retries: int = 5, delay: float = 3.5) -> Optional[str]:
+def get_html(url: str, max_retries: int = 3, delay: float = 3.5) -> Optional[str]:
     """
     Получает HTML-содержимое страницы с использованием Playwright.
 
