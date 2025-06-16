@@ -2,13 +2,14 @@ from sklearn.preprocessing import OneHotEncoder, StandardScaler
 from sklearn.compose import ColumnTransformer
 from sklearn.model_selection import train_test_split
 
-def preprocess(data):
+def preprocess(df):
     preprocessor = ColumnTransformer(
         transformers=[
             ('num', StandardScaler(), ['raise']),
             ('cat', OneHotEncoder(handle_unknown='ignore'), ['fund'])
         ])
 
+    data = df.dropna()
     # Разделяем данные
     X = data[['fund', 'raise']]
     y = data['roi']

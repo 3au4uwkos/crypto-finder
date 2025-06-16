@@ -1,3 +1,5 @@
+from sklearn.impute import SimpleImputer
+
 from .data_cleaner import preprocess
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.pipeline import Pipeline
@@ -9,6 +11,7 @@ def train_model(df):
 
     model = Pipeline([
         ('preprocessor', preprocessor),
+        ('imputer', SimpleImputer(strategy='most_frequent')),
         ('regressor', RandomForestRegressor(n_estimators=100, random_state=42))
     ])
 
