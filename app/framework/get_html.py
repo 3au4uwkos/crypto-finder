@@ -18,10 +18,10 @@ def get_html(url: str, max_retries: int = 3, delay: float = 3.5) -> Optional[str
     """
     retries = 0
 
-    while retries < max_retries:
-        try:
-            with sync_playwright() as p:
-                browser = p.chromium.launch(headless=True)
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=True)
+        while retries < max_retries:
+            try:
                 page = browser.new_page(
                     user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
                 )
@@ -32,14 +32,14 @@ def get_html(url: str, max_retries: int = 3, delay: float = 3.5) -> Optional[str
                 browser.close()
                 return html
 
-        except PlaywrightTimeoutError:
-            print(f"Попытка {retries + 1}: Таймаут при загрузке страницы. Повторная попытка...")
-        except Exception as e:
-            print(f"Попытка {retries + 1}: Ошибка: {str(e)}. Повторная попытка...")
+            except PlaywrightTimeoutError:
+                print(f"Попытка {retries + 1}: Таймаут при загрузке страницы. Повторная попытка...")
+            except Exception as e:
+                print(f"Попытка {retries + 1}: Ошибка: {str(e)}. Повторная попытка...")
 
-        retries += 1
-        if retries < max_retries:
-            time.sleep(delay)
+            retries += 1
+            if retries < max_retries:
+                time.sleep(delay)
 
     print(f"Не удалось получить данные после {max_retries} попыток.")
     return None
