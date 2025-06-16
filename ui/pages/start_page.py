@@ -9,7 +9,8 @@ def change_to_dataset_page(root):
     from data_collection import get_upcoming, get_source
     from core import train_model, fill_column
 
-    dataframe = fill_column(get_upcoming(rows=100, pages=3), train_model(get_source(pages=3)))
+    dataframe = fill_column(get_upcoming(rows=100, pages=10), train_model(get_source(pages=10)))
+    dataframe.drop_duplicates(inplace=True)
     dataframe = dataframe.sort_values('roi', ascending=False)
     change_page(root, lambda: dataset_page(root, dataframe))
 
