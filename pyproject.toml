@@ -2,7 +2,7 @@
 name = "pythonproject"
 version = "0.1.0"
 description = "The project to detect listing of cryptocurrency"
-requires-python = ">=3.13"
+requires-python = ">=3.12"
 dependencies = [
     "matplotlib>=3.10.3",
     "pandas==2.3.0",
