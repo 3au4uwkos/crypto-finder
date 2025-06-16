@@ -1,4 +1,4 @@
-from ui.main_window import main_window
+from app.ui.main_window import main_window
 
 
 def main():
