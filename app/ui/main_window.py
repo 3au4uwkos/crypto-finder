@@ -1,6 +1,6 @@
 import tkinter as tk
-from config.settings import WINDOW_WIDTH, WINDOW_HEIGHT
-from ui.pages.start_page import start_page
+from app.config.settings import WINDOW_WIDTH, WINDOW_HEIGHT
+from app.ui.pages.start_page import start_page
 
 
 def main_window():

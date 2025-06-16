@@ -1,4 +1,4 @@
-from framework import get_html
+from app.framework import get_html
 from bs4 import BeautifulSoup
 import pandas as pd
 

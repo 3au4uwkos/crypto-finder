@@ -1,14 +1,14 @@
 from tkinter import ttk
-from config.settings import WINDOW_WIDTH
-from ui.utils.configure_grid import set_grid
-from ui.widgets.create_title import create_title
-from ui.widgets.create_button import create_button
-from ui.widgets.display_dataframe.display_dataframe import display_dataframe
-from ui.utils.change_page import change_page
+from app.config.settings import WINDOW_WIDTH
+from app.ui.utils.configure_grid import set_grid
+from app.ui.widgets.create_title import create_title
+from app.ui.widgets.create_button import create_button
+from app.ui.widgets.display_dataframe.display_dataframe import display_dataframe
+from app.ui.utils.change_page import change_page
 
 
 def change_to_start_page(root):
-    from ui.pages.start_page import start_page
+    from app.ui.pages.start_page import start_page
     change_page(root, lambda: start_page(root))
 
 
